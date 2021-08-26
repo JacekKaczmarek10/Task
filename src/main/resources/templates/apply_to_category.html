@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories management system</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1> Zgłaszanie się do kategorii</h1>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                Nazwa kategori
+            </th>
+            <th>
+                Zgłaszanie się
+            </th>
+            <th>
+                Anulowanie zgłoszenia
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.categoryName}"></td>
+            <td>
+                <form method="POST" th:action="@{/assign-category/{id}(id=${category.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">Zgłoś się</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" th:action="@{/cancel-apply-category/{id}(id=${category.id})}">
+                    <button type="submit" name="submit" value="value" class="link-button">Anuluj</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a th:href = "@{/}">Powrót do głównej listy</a>
+</div>
+
+<!--<tr th:each="employee : ${listEmployees}">-->
+<!--    <td th:text="${employee.firstName}"></td>-->
+
+</body>
+</html>

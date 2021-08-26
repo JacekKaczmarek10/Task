@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+        <title>Główna strona aplikacji webowej</title>
+
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body style="background-color:gray">
+<div class="container my-2">
+<h2>Główna strona aplikacji</h2>
+<p>Dostępne funkcje:</p>
+
+    <a th:href = "@{/showAddCategoryForm}" class="btn btn-primary btn-sm mb-3"> Dodaj kategorię </a>
+    <a th:href = "@{/apply}" class="btn btn-primary btn-sm mb-3"> Zgłoś się do kategorii </a>
+    <a th:href = "@{/display}" class="btn btn-primary btn-sm mb-3"> Wyświetl wszystkie kategorie </a>
+    <a th:href = "@{/delete}" class="btn btn-primary btn-sm mb-3"> Usuń kategorię </a>
+
+</div>
+</body>
+</html>
