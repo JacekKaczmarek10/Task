@@ -1,10 +1,10 @@
 package pl.kaczmarek.task.dto;
 
-public class CategoryRequest {
+public class GroupRequest {
 
     private String name;
 
-    public CategoryRequest() {
+    public GroupRequest() {
     }
 
     public String getName() {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zarządzanie grupami</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1> Lista grup</h1>
+    <a th:href = "@{/showAddGroupForm}" class="btn btn-primary"> Dodaj grupę </a>
+    <br>
+    <br>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead class="thead-dark">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nazwa grupy
+            </th>
+            <th>
+                Ilosc zgłoszeń
+            </th>
+            <th>
+                Usuń grupę
+            </th>
+            <th>
+                Edytuj grupę
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="group : ${groups}">
+            <td th:text="${group.id}"></td>
+            <td th:text="${group.name}"></td>
+            <td th:text="${group.numberOfUsers}"></td>
+            <td>
+            <form method="POST" th:action="@{/delete/{id}(id=${group.id})}">
+                <button type="submit" name="submit" value="value" class="btn btn-primary">Usuń</button>
+            </form>
+            </td>
+            <td>
+                <a th:href = "@{/showEditGroupForm/{id}(id=${group.id})}" class="btn btn-primary"> Edytuj</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href = "@{/}">Powrót do głównej listy</a>
+</div>
+
+<!--<tr th:each="employee : ${listEmployees}">-->
+<!--    <td th:text="${employee.firstName}"></td>-->
+
+</body>
+</html>

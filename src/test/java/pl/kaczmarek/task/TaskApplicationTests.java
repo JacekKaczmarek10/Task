@@ -1,13 +1,25 @@
 package pl.kaczmarek.task;
+import static org.junit.Assert.assertFalse;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.kaczmarek.task.service.GroupServiceImpl;
 
 @SpringBootTest
 class TaskApplicationTests {
 
+	@Autowired
+	GroupServiceImpl groupService;
+
 	@Test
-	void contextLoads() {
+	void testAddingGroup() {
+		Assert.assertEquals(groupService.getAllGroups().size(),0);
+		groupService.addGroup("Banan");
+		groupService.addGroup("Banan");
+		groupService.addGroup("Banan");
+		Assert.assertEquals(groupService.getAllGroups().size(),3);
 	}
 
 }

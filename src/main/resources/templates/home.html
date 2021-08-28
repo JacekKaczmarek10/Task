@@ -13,14 +13,24 @@
 </head>
 <body style="background-color:gray">
 <div class="container my-2">
-<h2>Główna strona aplikacji</h2>
+<h2>Główna strona aplikacji</h2><br>
 <p>Dostępne funkcje:</p>
+    <a th:href = "@{/apply}" class="btn btn-primary"> Zgłoś się do grupy</a>
+    <a th:href = "@{/display}" class="btn btn-primary"> Zarządzanie grupami</a>
+    <br>
+    <br>
+    <h3>Treść zadania</h3>
+    <p>
+        Aplikacja ma umożliwić zebranie informacji od użytkowników na dowolnie zdefiniowany temat. Na początku (stan 1) definiowane są grupy tematyczne. Każda grupa to dowolny ciąg znaków np. przedział wiekowy 10 - 20 albo kolory czerwony, zielony ... Chciałbym móc zdefiniować maksymalnie 5 grup. Przykład w PDF pokazuje zebranie informacji na temat doświadczenia zawodowego w latach od uczestników podczas konferencji. Wynik to na przykład 10 osób posiada od 0 do 5 lat doświadczenia, 29 osób posiada od 5 do 10 lat doświadczenia itd. W drugim stanie użytkownicy głosują na wybrany przedział. Dla ułatwienia można zagłosować wielkotronie na różne przedziały (chociaż nie zawsze ma to sens). W trzecim stanie są prezentowane wyniki.
+        Chciałbym prosić o napsanie tego w języku Java i przy użyciu frameworka Spring Boot. Byłoby super gdybyś również użył tutaj Hibernate. Aby nie musieć korzystać z serwera SQL podopwiem iż możesz wykorzystać bazę danych SQL w pamięci operacyjnej (in memory database) np.: H2 (https://h2database.com/) lub HSQLDB (http://hsqldb.org/) lub dowolną inną, z którą masz doświadczenie. Jeżeli korzystasz z Maven'a wysarczy odpowiednia zależność do biblioteki i gotowe.
+    </p>
 
-    <a th:href = "@{/showAddCategoryForm}" class="btn btn-primary btn-sm mb-3"> Dodaj kategorię </a>
-    <a th:href = "@{/apply}" class="btn btn-primary btn-sm mb-3"> Zgłoś się do kategorii </a>
-    <a th:href = "@{/display}" class="btn btn-primary btn-sm mb-3"> Wyświetl wszystkie kategorie </a>
-    <a th:href = "@{/delete}" class="btn btn-primary btn-sm mb-3"> Usuń kategorię </a>
-
+    <h3>Do dodania</h3>
+    <br>
+    <p> Testy jednostkowe</p>
+    <p> Css</p>
+    <p> Opis rozwiązań zastosowanych w aplikacji</p>
+    <p> Sortowanie</p>
 </div>
 </body>
 </html>
