@@ -9,19 +9,21 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h1>Dodawanie grupy</h1>
-        <hr>
-        <form  th:action="@{/add-group}" th:object="${group}" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Nazwa grupy">
-                <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-            </div>
-            <button type="submit" class="btn btn-primary"> Dodaj grupę</button>
-        </form>
-        <hr>
-        <a th:href = "@{/}">Powrót do głównej listy</a>
-    </div>
+<div class="container">
+    <h1>Dodawanie grupy</h1>
+    <hr>
+    <form  th:action="@{/add-group}" th:object="${group}" method="POST">
+        <div class="form-group">
+            <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Nazwa grupy">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <button type="submit" class="btn btn-primary"> Dodaj grupę</button>
+    </form>
+    <hr>
+    <a th:href = "@{/}">Powrót do głównej listy</a>
+</div>
+
+
 
 </body>
 </html>

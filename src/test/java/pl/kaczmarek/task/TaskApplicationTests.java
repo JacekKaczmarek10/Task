@@ -14,12 +14,10 @@ class TaskApplicationTests {
 	GroupServiceImpl groupService;
 
 	@Test
-	void testAddingGroup() {
+	void testAddNewGroup() {
 		Assert.assertEquals(groupService.getAllGroups().size(),0);
-		groupService.addGroup("Banan");
-		groupService.addGroup("Banan");
-		groupService.addGroup("Banan");
-		Assert.assertEquals(groupService.getAllGroups().size(),3);
+		groupService.addGroup("Grupa 1");
+		Assert.assertEquals(groupService.getAllGroups().size(),1);
 	}
 
 }

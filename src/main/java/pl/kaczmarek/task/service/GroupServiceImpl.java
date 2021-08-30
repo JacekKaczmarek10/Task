@@ -2,6 +2,7 @@ package pl.kaczmarek.task.service;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.kaczmarek.task.dao.GroupRepository;
 import pl.kaczmarek.task.model.Group;
@@ -61,7 +62,27 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public Boolean canAddGroup() {
+        if (groupRepository.findAll().size() == maxGroupNumber){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public List<Group> getAllGroups(){
+        return groupRepository.findAll();
+    }
+
+    @Override
+    public List<Group> getGroupsSorted(String field, String direction) {
+        if(direction!=null) {
+            if (direction.equals("asc")) {
+                return groupRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+            } else if (direction.equals("desc")) {
+                return groupRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+            }
+        }
         return groupRepository.findAll();
     }
 

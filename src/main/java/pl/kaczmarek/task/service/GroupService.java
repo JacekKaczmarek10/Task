@@ -12,6 +12,8 @@ public interface GroupService {
     void cancelAssignGroup(Long id);
     void deleteGroup(Long id);
     void editGroup(Group group, Long id);
+    Boolean canAddGroup();
     List<Group> getAllGroups();
+    List<Group> getGroupsSorted(String field,String direction);
     Group getGroupById(Long id);
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.kaczmarek.task.model.Group;
 import pl.kaczmarek.task.service.GroupServiceImpl;
 
@@ -20,31 +21,38 @@ public class GetGroupController {
     public String showAddGroupForm(Model model){
         Group group = new Group();
         model.addAttribute("group", group);
+        Boolean canAddGroup = groupService.canAddGroup();
+        model.addAttribute("canAddGroup", canAddGroup);
         return "add_group";
     }
 
     @GetMapping("/showEditGroupForm/{id}")
-    public String deleteGroup(@PathVariable("id") Long id, Model model){
+    public String editGroup(@PathVariable("id") Long id, Model model){
         Group group = groupService.getGroupById(id);
         model.addAttribute("group",group);
         return "edit_group";
     }
 
-    @GetMapping("/apply")
+    @GetMapping("/showApplyForm")
     public String applyToGroup(Model model){
         model.addAttribute("groups",groupService.getAllGroups());
         return "apply_to_group";
     }
 
-    @GetMapping("/edit")
-    public String editGroup(Model model){
-        model.addAttribute("groups",groupService.getAllGroups());
-        return "edit_group";
-    }
+    @GetMapping("/displayGroups")
+    public String getAllGroups(Model model,
+                               @RequestParam(required = false)String sortField,
+                               @RequestParam(required = false)String sortDir){
+        model.addAttribute("groups",groupService.getGroupsSorted(sortField,sortDir));
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDir",sortDir);
+        model.addAttribute("canAddGroup",groupService.canAddGroup());
 
-    @GetMapping("/display")
-    public String getAllGroups(Model model){
-        model.addAttribute("groups",groupService.getAllGroups());
+        String reverseSortDir = "asc";
+        if(sortDir!=null && sortDir.equals("asc")){
+            reverseSortDir = "desc";
+        }
+        model.addAttribute("reverseSortDir",reverseSortDir);
         return "group_management";
     }
 }

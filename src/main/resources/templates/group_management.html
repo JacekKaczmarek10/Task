@@ -13,20 +13,26 @@
 
 <div class="container my-2">
     <h1> Lista grup</h1>
-    <a th:href = "@{/showAddGroupForm}" class="btn btn-primary"> Dodaj grupę </a>
+    <a th:if="${canAddGroup == true}" th:href = "@{/showAddGroupForm}" class="btn btn-primary"> Dodaj grupę </a>
     <br>
     <br>
     <table border="1" class = "table table-striped table-responsive-md">
         <thead class="thead-dark">
         <tr>
             <th>
+                <a th:href="@{'?sortField=id&sortDir='+${reverseSortDir}}">
                 Id
+                </a>
             </th>
             <th>
+                <a th:href="@{'?sortField=name&sortDir='+${reverseSortDir}}">
                 Nazwa grupy
+                </a>
             </th>
             <th>
+                <a th:href="@{'?sortField=numberOfUsers&sortDir='+${reverseSortDir}}">
                 Ilosc zgłoszeń
+                </a>
             </th>
             <th>
                 Usuń grupę
@@ -43,11 +49,11 @@
             <td th:text="${group.numberOfUsers}"></td>
             <td>
             <form method="POST" th:action="@{/delete/{id}(id=${group.id})}">
-                <button type="submit" name="submit" value="value" class="btn btn-primary">Usuń</button>
+                <button type="submit" name="submit" value="value" class="btn btn-danger">Usuń</button>
             </form>
             </td>
             <td>
-                <a th:href = "@{/showEditGroupForm/{id}(id=${group.id})}" class="btn btn-primary"> Edytuj</a>
+                <a th:href = "@{/showEditGroupForm/{id}(id=${group.id})}" class="btn btn-warning"> Edytuj</a>
             </td>
         </tr>
         </tbody>

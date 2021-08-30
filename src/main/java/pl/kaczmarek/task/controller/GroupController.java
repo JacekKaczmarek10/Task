@@ -30,37 +30,48 @@ public class GroupController {
 
     // POST METHODS
     @PostMapping("/add-group")
-    public String addCGroup(@Valid Group group, BindingResult result, Model model){
+    public String addCGroup(@Valid Group group, BindingResult result){
         if(result.hasErrors()){
-            return "redirect:/showAddGroupForm";
+            return "add_group";
         }
         groupService.addGroup(group.getName());
-        return "redirect:/display";
+        return "redirect:/displayGroups";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteGroup(@PathVariable("id") Long id){
-        groupService.deleteGroup(id);
-        return "redirect:/display";
+    @PostMapping("/edit/{id}")
+    public String editGroup(@PathVariable("id") Long id,
+                            @Valid Group group,
+                            BindingResult result){
+        if(result.hasErrors()){
+            return "edit_group";
+        }
+        groupService.editGroup(group,id);
+        return "redirect:/displayGroups";
+    }
+
+    @RequestMapping(value = "/assign-group/{id}", method = {RequestMethod.GET,RequestMethod.POST})
+    public String assignGroup(@PathVariable("id") Long id){
+        groupService.assignGroup(id);
+        return "redirect:/showApplyForm";
     }
 
     @PostMapping("/cancel-apply-group/{id}")
     public String cancelAssignGroup(@PathVariable("id") Long id){
         groupService.cancelAssignGroup(id);
-        return "redirect:/apply";
+        return "redirect:/showApplyForm";
     }
 
-    @PostMapping("/assign-group/{id}")
-    public String assignGroup(@PathVariable("id") Long id){
-        groupService.assignGroup(id);
-        return "redirect:/apply";
+
+    @PostMapping("/delete/{id}")
+    public String deleteGroup(@PathVariable("id") Long id){
+        groupService.deleteGroup(id);
+        return "redirect:/displayGroups";
     }
 
-    @PostMapping("/edit/{id}")
-    public String editGroup(@PathVariable("id") Long id,
-                               @ModelAttribute("group") Group group){
-        groupService.editGroup(group,id);
-        return "redirect:/display";
-    }
+
+
+
+
+
 
 }
