@@ -22,10 +22,11 @@ public class GroupServiceImpl implements GroupService {
     private int maxGroupNumber;
 
     @Override
-    public void addGroup(String group) {
+    public Group addGroup(String group) {
         if (groupRepository.findAll().size() < maxGroupNumber){
-            groupRepository.save(new Group(group));
+            return groupRepository.save(new Group(group));
         }
+        return null;
     }
 
     @Override

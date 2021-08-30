@@ -21,7 +21,6 @@ public class Group {
     private long id;
 
 
-    @NotEmpty(message = "Nazwa grupy nie może być nullem")
     @Size(min = 1,max = 10,message = "Nazwa grupy musi zawierać od 1 do 10 znaków")
     @Column(name = "name")
     private String name;

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GroupService {
 
-    void addGroup(String  group);
+    Group addGroup(String  group);
     void assignGroup(Long id);
     void cancelAssignGroup(Long id);
     void deleteGroup(Long id);
