@@ -24,7 +24,7 @@ public class MailService {
     @Value("${spring.mail.password}")
     private String password;
 
-    public void sendEmail(){
+    public void sendEmail() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
         mailSender.setPort(port);
@@ -38,15 +38,14 @@ public class MailService {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
 
-
-            // Create an email instance
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setFrom("STADLER_SYSTEM");
-            mailMessage.setTo("kaczmarek.jacek10@gmail.com");
-            mailMessage.setSubject("Kończy się przegląd");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            mailMessage.setText("TY KROWO");
-            // Send mail
-            mailSender.send(mailMessage);
-        }
+        // Create an email instance
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom("STADLER_SYSTEM");
+        mailMessage.setTo("kaczmarek.jacek10@gmail.com");
+        mailMessage.setSubject("Kończy się przegląd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        mailMessage.setText("Test mail");
+        // Send mail
+        mailSender.send(mailMessage);
+    }
 }
